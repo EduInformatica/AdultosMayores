@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educación Informática para Adultos Mayores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #e6f7ff;
+            margin: 0;
+            padding: 0;
+            
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            font-size: 3em;
+        }
+        p {
+            font-size: 1.5em;
+            color: #333;
+        }
+        
+        .button {
+    position: relative; /* Asegura que el contenido sea posicionable */
+    display: inline-block;
+    width: 80%;
+    max-width: 700px; /* Ajusta el ancho máximo según sea necesario */
+    max-height: 130px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: hidden; /* Maneja el overflow de las imágenes absolutas */
+    transition: transform 0.6s;
+}
+        .button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            z-index: 1;
+            padding-bottom: 100px;
+        }
+        
+        .button img.button-image {
+    position: absolute;
+    top: 100px; /* Ajusta según sea necesario para la posición vertical deseada */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 180px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.button:hover img.button-image {
+    opacity: 1;
+}
+
+.button span {
+    display: inline-block;
+    transform: translateY(0);
+    font-family: 'Roboto', sans-serif; /* Fuente del texto */
+    font-size: 1.2em; /* Tamaño de la fuente */
+    color: #007bff; /* Color del texto */
+    background-color: #fff; /* Color de fondo */
+    padding: 10px 20px; /* Relleno alrededor del texto */
+    border: 2px solid #007bff; /* Borde sólido */
+    border-radius: 30px; /* Bordes redondeados */
+}
+
+.button:hover span {
+    transition: opacity 0.3s, transform 0.3s;
+    transform: translateY(20px);
+    font-weight: bold;
+    background-color: #0056b3;
+    border: hidden;
+    color: #fff;
+    margin-top: 150px; /* Ajusta según sea necesario para el espacio deseado */
+}
+
+        .buttons .blurred{
+            filter: blur(10px);
+            transform: scale(0.9, 0.9);
+        }
+
+        .intro {
+            margin-top: 20px;
+            border-top: 2px solid #007bff;
+            padding-top: 20px;
+        }
+        .intro img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .intro video {
+            width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .nav-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.nav-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 120px; /* Fijar el mismo ancho para ambos botones */
+    height: 120px; /* Fijar el mismo alto para ambos botones */
+}
+
+.nav-button a{
+    color: white;
+    text-decoration: none;
+}
+.nav-button:hover{
+    background-color: #0056b3;
+    
+}
+
+.TTS{
+            background: #FFF;
+            border: none;
+            width: 40px;
+            padding: 0;
+        }
+        .TTS img{
+            width: 30px;
+            height: 30px;
+        }
+        .TTS:hover{
+            background-color: #0056b3;
+            border-radius: 4px;
+        }
+
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .container {
+            width: 60%;
+        }
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            button {
+                font-size: 1em;
+            }
+            .button-image  {
+                width: 50%;
+            }
+            .TTS img{
+            width: 25px;
+            height: 25px;
+        }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+            width: 60%;
+        }
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            button {
+                font-size: 1em;
+            }
+            .button-image  {
+                width: 50%;
+            }
+            .TTS img{
+            width: 25px;
+            height: 25px;
+        }
+        .nav-button {
+    width: 50px; /* Fijar el mismo ancho para ambos botones */
+    height: 550x; /* Fijar el mismo alto para ambos botones */
+    padding-left: 13px;
+}
+.nav-button img {
+    width: 30px; /* Fijar el mismo ancho para ambos botones */
+    height: 30px; /* Fijar el mismo alto para ambos botones */
+}
+        }
+
+        @media (max-width: 480px) {
+            .container {
+            width: 80%;
+        }
+            h1 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 0.9em;
+            }
+            button {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            .button-image {
+                width: 50%;
+            }
+            .TTS img{
+            width: 15px;
+            height: 15px;
+        }
+        .nav-button {
+            width: 100px; /* Fijar el mismo ancho para ambos botones */
+            height: 100x; /* Fijar el mismo alto para ambos botones */
+    padding-left: 25px;
+}
+.nav-button img {
+    width: 50px; /* Fijar el mismo ancho para ambos botones */
+    height: 50px; /* Fijar el mismo alto para ambos botones */
+}
+.nav-buttons {
+            position: relative;
+}
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.button');
+
+    buttons.forEach(button => {
+        button.addEventListener('mouseover', () => {
+            buttons.forEach(b => {
+                if (b !== button) {
+                    b.classList.add('blurred');
+                }
+            });
+        });
+
+        button.addEventListener('mouseout', () => {
+            buttons.forEach(b => {
+                b.classList.remove('blurred');
+            });
+        });
+    });
+});
+
+function readSections(sectionIds) {
+    // Detiene cualquier síntesis de voz en curso
+    window.speechSynthesis.cancel();
+    
+    // Obtén el texto de todas las secciones y concatenarlo
+    let fullText = '';
+    sectionIds.forEach(sectionId => {
+        const sectionText = document.getElementById(sectionId).innerText;
+        fullText += sectionText + ' ';  // Añade un espacio entre las secciones
+    });
+    
+    // Crea una nueva instancia de SpeechSynthesisUtterance
+    const utterance = new SpeechSynthesisUtterance(fullText.trim());
+    
+    // Ajusta propiedades de la voz si es necesario
+    utterance.lang = 'es-ES';  // Configura el idioma a español
+    
+    // Lee el texto en voz alta
+    window.speechSynthesis.speak(utterance);
+}
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (SpeechRecognition) {
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'es-ES';
+            recognition.continuous = true;
+            recognition.interimResults = false;
+
+            // Función para verificar el tamaño de la pantalla
+    const isScreenSizeAllowed = () => {
+        const minWidth = 1025; // Define el ancho mínimo permitido
+        const minHeight = 600; // Define el alto mínimo permitido
+        return window.innerWidth >= minWidth && window.innerHeight >= minHeight;
+    };
+
+    const startRecognition = () => {
+        if (!isScreenSizeAllowed()) {
+            console.log("El reconocimiento de voz está desactivado en pantallas pequeñas.");
+            return;
+        }
+        try {
+            recognition.start();
+            console.log("Reconocimiento de voz iniciado.");
+        } catch (err) {
+            console.error("Error al iniciar el reconocimiento:", err);
+        }
+    };
+
+            recognition.addEventListener('result', (event) => {
+                const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+                console.log("Texto detectado:", transcript);
+
+                // Buscar palabras clave dentro del texto
+                if (transcript.includes("regresar")) {
+                    regresar.click();
+                }  else if (transcript.includes("escuchar")) {
+                    escuchar.click();
+                } else if (transcript.includes("salir")) {
+                    regresar.click();
+                } else if (transcript.includes("introducción")) {
+                    introduccion.click();
+                } 
+                else if (transcript.includes("periféricos")) {
+                    perifericos.click();
+                } else if (transcript.includes("comandos")) {
+                    comandos.click();
+                } else if (transcript.includes("aplicaciones")) {
+                    aplicaciones.click();
+                } 
+            });
+
+            recognition.addEventListener('error', (event) => {
+                console.error("Error en el reconocimiento de voz:", event.error);
+                status.textContent = "Estado: Error - " + event.error;
+            });
+
+            recognition.addEventListener('end', () => {
+                status.textContent = "Estado: Inactivo";
+                startRecognition(); // Reiniciar automáticamente
+            });
+
+            window.onload = () => {
+                try {
+                    startRecognition();
+                } catch (err) {
+                    console.error("No se pudo iniciar el reconocimiento automáticamente:", err);
+                }
+            };
+        // Verificar y empezar el reconocimiento en función del tamaño de pantalla
+    window.onload = () => {
+        if (isScreenSizeAllowed()) {
+            console.log("El tamaño de pantalla es adecuado. Iniciando reconocimiento de voz...");
+            startRecognition();
+        } else {
+            console.log("El reconocimiento de voz está desactivado en pantallas pequeñas.");
+        }
+    };
+
+    // Escuchar cambios de tamaño de pantalla
+    window.onresize = () => {
+        if (!isScreenSizeAllowed() && recognition.recognizing) {
+            console.log("Pantalla demasiado pequeña, deteniendo el reconocimiento de voz.");
+            recognition.stop();
+        }
+    };
+} else {
+    alert("Tu navegador no soporta la API de reconocimiento de voz.");
+}
+    </script>
+</head>
+<body>
+    <div class="nav-buttons">
+        
+        <a href="portada.html" id="regresar"><button class="nav-button"><img src="Imagenes/Salida.svg"></button></a>
+    </div>
+    <div class="container">
+        <h1 id="section1">Bienvenidos a la Educación Informática</h1>
+        <p id="section2">Este sitio web está diseñado para ayudar a los adultos mayores a aprender sobre informática de una manera fácil y divertida.<button onclick="readSections(['section1', 'section2'])" class="TTS" id="escuchar"><img src="Imagenes/AUDIO.png" class="icono"></button></p>
+        <div class="buttons">
+        <a href="introduccion.html" class="button" id="introduccion"><img src="Imagenes/Imagen Introduccion.png" class="button-image" alt="Imagen de Introducción"><span>Introducción</span></a>
+        <a href="perifericos.html" class="button" id="perifericos"><img src="Imagenes/Imagen Perifericos.png" class="button-image" alt="Imagen de Perifericos"><span>Periféricos</span></a>
+        <a href="comandos.html" class="button" id="comandos"><img src="Imagenes/Imagen Comandos.png" class="button-image" alt="Imagen de Comandos" style="width: 300px;"><span>Comandos</span></a>
+        <a href="aplicaciones.html" class="button" id="aplicaciones"><img src="Imagenes/Imagen Aplicaciones.png" class="button-image" alt="Imagen de Aplicaciones" style="width: 500px;"><span>Aplicaciones</span></a>
+        
+    </div>
+    </div>
+</body>
+</html>

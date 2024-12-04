@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo usar Microsoft Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.25em;
+        }
+        img, video {
+            width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .video-source {
+         text-align: left;
+         font-size: 1em;
+         color: #333;
+        }
+        button {
+            display: block;
+            width: 80%;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.25em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    /* Media Queries */
+@media (max-width: 1024px) {
+            .container {
+            width: 60%;
+        }
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            button {
+                font-size: 1em;
+            }
+            .button-image  {
+                width: 50%;
+            }
+            .TTS img{
+            width: 25px;
+            height: 25px;
+        }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+            width: 60%;
+        }
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            button {
+                font-size: 1em;
+            }
+            .button-image  {
+                width: 50%;
+            }
+            .TTS img{
+            width: 25px;
+            height: 25px;
+        }
+        .nav-button {
+    width: 50px; /* Fijar el mismo ancho para ambos botones */
+    height: 550x; /* Fijar el mismo alto para ambos botones */
+    padding-left: 13px;
+}
+.nav-button img {
+    width: 30px; /* Fijar el mismo ancho para ambos botones */
+    height: 30px; /* Fijar el mismo alto para ambos botones */
+}
+        }
+
+        @media (max-width: 480px) {
+            .container {
+            width: 80%;
+        }
+            h1 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 0.9em;
+            }
+            button {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            .button-image {
+                width: 50%;
+            }
+            .TTS img{
+            width: 15px;
+            height: 15px;
+        }
+        .nav-button {
+            width: 100px; /* Fijar el mismo ancho para ambos botones */
+            height: 100x; /* Fijar el mismo alto para ambos botones */
+            margin-left: 10px;
+}
+.nav-button img {
+    width: 50px; /* Fijar el mismo ancho para ambos botones */
+    height: 50px; /* Fijar el mismo alto para ambos botones */
+}
+.nav-buttons {
+            display: inline-flex;
+            position: relative;
+            margin-left: 50px;
+}
+        }
+    </style>
+    <script>
+        
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'es-ES';
+    recognition.continuous = true;
+    recognition.interimResults = false;
+    
+    // Función para verificar el tamaño de la pantalla
+    const isScreenSizeAllowed = () => {
+        const minWidth = 1025; // Define el ancho mínimo permitido
+        const minHeight = 600; // Define el alto mínimo permitido
+        return window.innerWidth >= minWidth && window.innerHeight >= minHeight;
+    };
+
+    const startRecognition = () => {
+        if (!isScreenSizeAllowed()) {
+            console.log("El reconocimiento de voz está desactivado en pantallas pequeñas.");
+            return;
+        }
+        try {
+            recognition.start();
+            console.log("Reconocimiento de voz iniciado.");
+        } catch (err) {
+            console.error("Error al iniciar el reconocimiento:", err);
+        }
+    };
+
+    recognition.addEventListener('result', (event) => {
+        const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+        console.log("Texto detectado:", transcript);
+
+        const reproducir = ["reproducir", "iniciar", "comenzar", "pausar", "pausa"];
+        const pausar = ["pausar", "pausa"];
+
+        // Buscar palabras clave dentro del texto
+        if (transcript.includes("regresar")) {
+            regresar.click();
+        } 
+    });
+
+    recognition.addEventListener('error', (event) => {
+        console.error("Error en el reconocimiento de voz:", event.error);
+        status.textContent = "Estado: Error - " + event.error;
+    });
+
+    recognition.addEventListener('end', () => {
+        status.textContent = "Estado: Inactivo";
+        startRecognition(); // Reiniciar automáticamente
+    });
+
+    window.onload = () => {
+        try {
+            startRecognition();
+        } catch (err) {
+            console.error("No se pudo iniciar el reconocimiento automáticamente:", err);
+        }
+    };
+// Verificar y empezar el reconocimiento en función del tamaño de pantalla
+window.onload = () => {
+        if (isScreenSizeAllowed()) {
+            console.log("El tamaño de pantalla es adecuado. Iniciando reconocimiento de voz...");
+            startRecognition();
+        } else {
+            console.log("El reconocimiento de voz está desactivado en pantallas pequeñas.");
+        }
+    };
+
+    // Escuchar cambios de tamaño de pantalla
+    window.onresize = () => {
+        if (!isScreenSizeAllowed() && recognition.recognizing) {
+            console.log("Pantalla demasiado pequeña, deteniendo el reconocimiento de voz.");
+            recognition.stop();
+        }
+    };
+} else {
+    alert("Tu navegador no soporta la API de reconocimiento de voz.");
+}
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Cómo usar Microsoft Excel</h1>
+        <p>Microsoft Excel es una hoja de cálculo que te permite organizar datos y realizar cálculos. Aprende las funciones básicas para empezar a usar Excel.</p>
+        <video controls>
+            <source src="💥Aprende Lo Mas BASICO DE EXCEL En 10 MINUTOS  💥.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de videos.
+        </video>
+        <div class="video-source">
+          Fuente: https://www.youtube.com/watch?v=pDwZV7V7ECM&t=32s
+        </div>
+        <button onclick="navigateTo('aplicaciones.html')" id="regresar">Regresar</button>
+    </div>
+    <script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>

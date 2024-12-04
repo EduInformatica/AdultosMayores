@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido - Educación Informática para Adultos Mayores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            
+        }
+        .container {
+            width: 50%;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            top: 20%;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            font-weight: bold;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.25em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 60%;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .imagen {
+            width: 50%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .icono {
+            width: 50%;
+            border-radius: 10px;
+            margin-bottom: 0px;
+        }
+
+        .TTS{
+            background: #FFF;
+            border: none;
+            width: 40px;
+            padding: 0;
+        }
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .container {
+            width: 60%;
+        }
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            button {
+                font-size: 1em;
+            }
+            .button-image  {
+                width: 50%;
+            }
+            .TTS img{
+            width: 25px;
+            height: 25px;
+        }
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            button {
+                font-size: 1em;
+            }
+            .imagen {
+                width: 50%;
+            }
+            .icono {
+                width: 60%;
+                margin-bottom: -5px;
+            }
+            
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 0.9em;
+            }
+            button {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+            .container {
+                width: 80%;
+                padding: 15px;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            .imagen {
+                width: 50%;
+            }
+            .icono {
+                width: 60%;
+                margin-bottom: -5px;
+            }
+        }
+    </style>
+
+    <script>
+        function readSections(sectionIds) {
+    // Detiene cualquier síntesis de voz en curso
+    window.speechSynthesis.cancel();
+    
+    // Obtén el texto de todas las secciones y concatenarlo
+    let fullText = '';
+    sectionIds.forEach(sectionId => {
+        const sectionText = document.getElementById(sectionId).innerText;
+        fullText += sectionText + ' ';  // Añade un espacio entre las secciones
+    });
+    
+    // Crea una nueva instancia de SpeechSynthesisUtterance
+    const utterance = new SpeechSynthesisUtterance(fullText.trim());
+    
+    // Ajusta propiedades de la voz si es necesario
+    utterance.lang = 'es-ES';  // Configura el idioma a español
+    
+    // Lee el texto en voz alta
+    window.speechSynthesis.speak(utterance);
+}
+
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'es-ES';
+    recognition.continuous = true;
+    recognition.interimResults = false;
+
+    // Función para verificar el tamaño de la pantalla
+    const isScreenSizeAllowed = () => {
+        const minWidth = 1025; // Define el ancho mínimo permitido
+        const minHeight = 600; // Define el alto mínimo permitido
+        return window.innerWidth >= minWidth && window.innerHeight >= minHeight;
+    };
+
+    const startRecognition = () => {
+        if (!isScreenSizeAllowed()) {
+            console.log("El reconocimiento de voz está desactivado en pantallas pequeñas.");
+            return;
+        }
+        try {
+            recognition.start();
+            console.log("Reconocimiento de voz iniciado.");
+        } catch (err) {
+            console.error("Error al iniciar el reconocimiento:", err);
+        }
+    };
+
+    recognition.addEventListener('result', (event) => {
+        const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+        console.log("Texto detectado:", transcript);
+
+        // Buscar palabras clave dentro del texto
+        if (transcript.includes("empezar")) {
+            document.getElementById('empezar').click();
+        } else if (transcript.includes("escuchar")) {
+            document.getElementById('escuchar').click();
+        } 
+    });
+
+    recognition.addEventListener('error', (event) => {
+        console.error("Error en el reconocimiento de voz:", event.error);
+    });
+
+    recognition.addEventListener('end', () => {
+        console.log("Reconocimiento finalizado. Reiniciando...");
+        startRecognition(); // Reiniciar automáticamente si el tamaño de pantalla es válido
+    });
+
+    // Verificar y empezar el reconocimiento en función del tamaño de pantalla
+    window.onload = () => {
+        if (isScreenSizeAllowed()) {
+            console.log("El tamaño de pantalla es adecuado. Iniciando reconocimiento de voz...");
+            startRecognition();
+        } else {
+            console.log("El reconocimiento de voz está desactivado en pantallas pequeñas.");
+        }
+    };
+
+    // Escuchar cambios de tamaño de pantalla
+    window.onresize = () => {
+        if (!isScreenSizeAllowed() && recognition.recognizing) {
+            console.log("Pantalla demasiado pequeña, deteniendo el reconocimiento de voz.");
+            recognition.stop();
+        }
+    };
+} else {
+    alert("Tu navegador no soporta la API de reconocimiento de voz.");
+}
+        </script>
+</head>
+<body>
+    <div class="container">
+        <h1>¡Bienvenido!</h1>
+        <img src="Imagenes/Adultosmayores.jfif" alt="Adultos Mayores" class="imagen">
+        <p id="section1">Bienvenidos a nuestro curso interactivo de informática básica, diseñado especialmente para adultos mayores. Aquí aprenderás a usar la computadora de una manera fácil y divertida.</p>
+        <p id="section2">Prepárate para descubrir el mundo digital a tu ritmo, con tutoriales claros que harán tu aprendizaje más entretenido.<button onclick="readSections(['section1', 'section2'])" class="TTS" id="escuchar"><img src="Imagenes/AUDIO.png" class="icono"></button></p>
+        <button onclick="navigateTo('Pantalla de carga.html')" id="empezar">Empezar</button>
+    </div>
+    <script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>
